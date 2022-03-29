@@ -23,6 +23,36 @@ class _HomeState extends State<Home> {
     if (itemList == null) {
       itemList = List<Item>();
     }
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Daftar Item'),
+      ),
+      body: Column(
+        children: [
+          Expanded(
+            child: createListView(),
+          ),
+          Container(
+            alignment: Alignment.bottomCenter,
+            child: SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                child: Text('Tambah Item'),
+                onPressed: () async {
+                  var item = await navigateToEntryForm(context, null);
+                  if (item != null) {
+                    // TODO 2 Panggil Fungsi untuk insert ke DB
+                    int result = await dbHelper.insert(item);
+                    if (result > 0) {
+                      updateListView();
+                    }
+                  }
+                },
+              ),
+            ),
+          )
+        ],
+      ),
+    );
   }
 }
