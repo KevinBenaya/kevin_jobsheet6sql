@@ -34,21 +34,21 @@ class DBHelper {
 
   //select databases
   Future<List<Map<String, dynamic>>> select() async {
-    Database db = await this.initDb();
+    Database db = await this.database;
     var mapList = await db.query('item', orderBy: 'name');
     return mapList;
   }
 
   //create databases
   Future<int> insert(Item object) async {
-    Database db = await this.initDb();
+    Database db = await this.database;
     int count = await db.insert('item', object.toMap());
     return count;
   }
 
   //update databases
   Future<int> update(Item object) async {
-    Database db = await this.initDb();
+    Database db = await this.database;
     int count = await db
         .update('item', object.toMap(), where: 'id=?', whereArgs: [object.id]);
     return count;
@@ -56,8 +56,31 @@ class DBHelper {
 
   //delete databases
   Future<int> delete(int id) async {
-    Database db = await this.initDb();
+    Database db = await this.database;
     int count = await db.delete('item', where: 'id=?', whereArgs: [id]);
     return count;
+  }
+
+  Future<List<Item>> getItemList() async {
+    var itemMapList = await select();
+    int count = itemMapList.length;
+    List<Item> itemList = List<Item>();
+    for (int i = 0; i < count; i++) {
+      itemList.add(Item.fromMap(itemMapList[i]));
+    }
+    return itemList;
+  }
+
+  factory DBHelper() {
+    if (_dbHelper == null) {
+      _dbHelper = DBHelper._createObject();
+    }
+    return _dbHelper;
+  }
+  Future<Database> get database async {
+    if (_database == null) {
+      _database = await initDb();
+    }
+    return _database;
   }
 }
