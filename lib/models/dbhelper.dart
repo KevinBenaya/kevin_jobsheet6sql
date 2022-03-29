@@ -53,4 +53,11 @@ class DBHelper {
         .update('item', object.toMap(), where: 'id=?', whereArgs: [object.id]);
     return count;
   }
+
+  //delete databases
+  Future<int> delete(int id) async {
+    Database db = await this.initDb();
+    int count = await db.delete('item', where: 'id=?', whereArgs: [id]);
+    return count;
+  }
 }
