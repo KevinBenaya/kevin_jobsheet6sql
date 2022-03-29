@@ -2,7 +2,7 @@ import 'dart:html';
 
 import 'package:flutter/material.dart';
 
-import 'item.dart';
+import '../models/item.dart';
 
 class EntryForm extends StatefulWidget {
   final Item item;
