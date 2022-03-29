@@ -54,10 +54,10 @@ class _EntryFormState extends State<EntryForm> {
             Padding(
               padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
               child: TextField(
-                controller: nameController,
+                controller: priceController,
                 keyboardType: TextInputType.text,
                 decoration: InputDecoration(
-                  labelText: 'Nama Barang',
+                  labelText: 'Harga Barang',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5.0),
                   ),
