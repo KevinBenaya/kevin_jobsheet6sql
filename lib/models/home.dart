@@ -63,4 +63,39 @@ class _HomeState extends State<Home> {
     }));
     return result;
   }
+
+  ListView createListView() {
+    TextStyle textStyle = Theme.of(context).textTheme.headline5;
+    return ListView.builder(
+      itemCount: count,
+      itemBuilder: (BuildContext context, int index) {
+        return Card(
+          color: Colors.white,
+          elevation: 2.0,
+          child: ListTile(
+            leading: CircleAvatar(
+              backgroundColor: Colors.red,
+              child: Icon(Icons.ad_units),
+            ),
+            title: Text(
+              this.itemList[index].name,
+              style: textStyle,
+            ),
+            subtitle: Text(this.itemList[index].price.toString()),
+            trailing: GestureDetector(
+              child: Icon(Icons.delete),
+              onTap: () async {
+                //TODO 3 Panggil Fungsi untuk Delete dari DB berdasarkan Item
+              },
+            ),
+            onTap: () async {
+              var item =
+                  await navigateToEntryForm(context, this.itemList[index]);
+              //TODO 4 Panggil Fungsi untuk Edit data
+            },
+          ),
+        );
+      },
+    );
+  }
 }
