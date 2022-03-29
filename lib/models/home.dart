@@ -98,4 +98,19 @@ class _HomeState extends State<Home> {
       },
     );
   }
+
+  //update List item
+  void updateListView() {
+    final Future<Database> dbFuture = dbHelper.initDb();
+    dbFuture.then((database) {
+      //TODO 1 Select data dari DB
+      Future<List<Item>> itemListFuture = dbHelper.getItemList();
+      itemListFuture.then((itemList) {
+        setState(() {
+          this.itemList = itemList;
+          this.count = itemList.length;
+        });
+      });
+    });
+  }
 }
