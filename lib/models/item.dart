@@ -13,4 +13,11 @@ class Item {
 
   // konstruktor versi 1
   Item(this._name, this._price);
+
+  // konstruktor versi 2: konversi dari Map ke Item
+  Item.fromMap(Map<String, dynamic> map) {
+    this._id = map['id'];
+    this._name = map['name'];
+    this._price = map['price'];
+  }
 }
