@@ -45,4 +45,12 @@ class DBHelper {
     int count = await db.insert('item', object.toMap());
     return count;
   }
+
+  //update databases
+  Future<int> update(Item object) async {
+    Database db = await this.initDb();
+    int count = await db
+        .update('item', object.toMap(), where: 'id=?', whereArgs: [object.id]);
+    return count;
+  }
 }
