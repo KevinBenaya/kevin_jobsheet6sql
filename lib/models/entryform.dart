@@ -10,7 +10,7 @@ class EntryForm extends StatefulWidget {
   EntryForm(this.item);
 
   @override
-  State<EntryForm> createState() => _EntryFormState();
+  State<EntryForm> createState() => _EntryFormState(this.item);
 }
 
 class _EntryFormState extends State<EntryForm> {
@@ -37,7 +37,7 @@ class _EntryFormState extends State<EntryForm> {
           children: <Widget>[
             //nama barang
             Padding(
-              padding: EdgeInsets.only(top:20.0, bottom: 20.0),
+              padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
               child: TextField(
                 controller: nameController,
                 keyboardType: TextInputType.text,
@@ -47,14 +47,12 @@ class _EntryFormState extends State<EntryForm> {
                     borderRadius: BorderRadius.circular(5.0),
                   ),
                 ),
-                onChanged: (value){
-
-                },
+                onChanged: (value) {},
               ),
             ),
-            //harga barang 
+            //harga barang
             Padding(
-              padding: EdgeInsets.only(top:20.0, bottom: 20.0),
+              padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
               child: TextField(
                 controller: nameController,
                 keyboardType: TextInputType.text,
@@ -64,14 +62,62 @@ class _EntryFormState extends State<EntryForm> {
                     borderRadius: BorderRadius.circular(5.0),
                   ),
                 ),
-                onChanged: (value){
+                onChanged: (value) {},
+              ),
+            ),
 
-                },
+            // membuat tombol button
+            Padding(
+              padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
+              child: Row(
+                children: <Widget>[
+                  // tombol simpan
+                  Expanded(
+                    child: ElevatedButton(
+                      //color: Theme.of(context).primaryColorDark,
+                      //textColor: Theme.of(context).primaryColorLight,
+                      child: Text(
+                        'Save',
+                        textScaleFactor: 1.5,
+                      ),
+                      onPressed: () {
+                        if (item == null) {
+                          // tambah data
+                          item = Item(nameController.text,
+                              int.parse(priceController.text));
+                        } else {
+                          // ubah data
+                          item.name = nameController.text;
+                          item.price = int.parse(priceController.text);
+                        }
+                        // kembali ke layar sebelumnya dengan membawa objek item
+                        Navigator.pop(context, item);
+                      },
+                    ),
+                  ),
+                  Container(
+                    width: 5.0,
+                  ),
+                  // tombol batal
+                  Expanded(
+                    child: ElevatedButton(
+                      //color: Theme.of(context).primaryColorDark,
+                      //textColor: Theme.of(context).primaryColorLight,
+                      child: Text(
+                        'Cancel',
+                        textScaleFactor: 1.5,
+                      ),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                    ),
+                  ),
+                ],
               ),
             ),
           ],
         ),
       ),
-    )
+    );
   }
 }
