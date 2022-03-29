@@ -55,4 +55,12 @@ class _HomeState extends State<Home> {
       ),
     );
   }
+
+  Future<Item> navigateToEntryForm(BuildContext context, Item item) async {
+    var result = await Navigator.push(context,
+        MaterialPageRoute(builder: (BuildContext context) {
+      return EntryForm(item);
+    }));
+    return result;
+  }
 }
