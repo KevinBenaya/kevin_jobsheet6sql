@@ -10,8 +10,8 @@ class Item {
   String get name => _name!;
   set name(String value) => _name = value;
 
-  get stok => this._stok!;
-  set stok(value) => this._stok = value;
+  get stok => _stok!;
+  set stok(value) => _stok = value;
 
   String get kode => _kode!;
   set kode(String value) => _kode = value;
@@ -24,17 +24,17 @@ class Item {
 
   // konstruktor versi 2: konversi dari Map ke Item
   Item.fromMap(Map<String, dynamic> map) {
-    this._id = map['id'];
-    this._name = map['name'];
-    this._price = map['price'];
-    this._stok = map['stok'];
-    this._kode = map['kode'];
+    _id = map['id'];
+    _name = map['name'];
+    _price = map['price'];
+    _stok = map['stok'];
+    _kode = map['kode'];
   }
 
   // konversi dari Item ke Map
   Map<String, dynamic> toMap() {
     Map<String, dynamic> map = Map<String, dynamic>();
-    map['id'] = this._id;
+    map['id'] = _id;
     map['name'] = name;
     map['price'] = price;
     map['stok'] = stok;
