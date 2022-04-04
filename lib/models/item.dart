@@ -1,23 +1,23 @@
 class Item {
-  int _id;
-  String _name;
-  int _price;
-  int _stok;
-  int _kode;
+  int? _id;
+  String? _name;
+  int? _price;
+  int? _stok;
+  String? _kode;
 
-  int get id => _id;
+  int get id => _id!;
 
-  String get name => this._name;
-  set name(String value) => this._name = value;
+  String get name => _name!;
+  set name(String value) => _name = value;
 
-  get stok => this._stok;
+  get stok => this._stok!;
   set stok(value) => this._stok = value;
 
-  get kode => this._kode;
-  set kode(value) => this._kode = value;
+  String get kode => _kode!;
+  set kode(String value) => _kode = value;
 
-  get price => this._price;
-  set price(value) => this._price = value;
+  get price => price!;
+  set price(value) => _price = value;
 
   // konstruktor versi 1
   Item(this._name, this._price);

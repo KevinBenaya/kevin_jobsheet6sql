@@ -16,12 +16,12 @@ class _HomeState extends State<Home> {
   DBHelper dbHelper = DBHelper();
   int count = 0;
 
-  List<Item> itemList;
+  List<Item>? itemList;
 
   @override
   Widget build(BuildContext context) {
     if (itemList == null) {
-      itemList = [];
+      itemList = <Item>[];
     }
     return Scaffold(
       appBar: AppBar(
@@ -65,7 +65,7 @@ class _HomeState extends State<Home> {
   }
 
   ListView createListView() {
-    TextStyle textStyle = Theme.of(context).textTheme.headline5;
+    TextStyle? textStyle = Theme.of(context).textTheme.headline5;
     return ListView.builder(
       itemCount: count,
       itemBuilder: (BuildContext context, int index) {
@@ -78,20 +78,23 @@ class _HomeState extends State<Home> {
               child: Icon(Icons.ad_units),
             ),
             title: Text(
-              this.itemList[index].name,
+              this.itemList![index].name,
               style: textStyle,
             ),
-            subtitle: Text(this.itemList[index].price.toString()),
+            subtitle: Text(this.itemList![index].price.toString()),
             trailing: GestureDetector(
               child: const Icon(Icons.delete),
               onTap: () async {
                 //TODO 3 Panggil Fungsi untuk Delete dari DB berdasarkan Item
+                dbHelper.delete(itemList![index].id);
+                updateListView();
               },
             ),
             onTap: () async {
               var item =
-                  await navigateToEntryForm(context, this.itemList[index]);
+                  await navigateToEntryForm(context, this.itemList![index]);
               //TODO 4 Panggil Fungsi untuk Edit data
+              dbHelper.update(item);
             },
           ),
         );

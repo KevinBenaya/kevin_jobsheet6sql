@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../models/item.dart';
 
 class EntryForm extends StatefulWidget {
-  final Item item;
+  final Item? item;
 
   EntryForm(this.item);
 
@@ -12,7 +12,7 @@ class EntryForm extends StatefulWidget {
 }
 
 class _EntryFormState extends State<EntryForm> {
-  Item item;
+  Item? item;
 
   _EntryFormState(this.item);
   TextEditingController nameController = TextEditingController();
@@ -23,10 +23,10 @@ class _EntryFormState extends State<EntryForm> {
   @override
   Widget build(BuildContext context) {
     if (item != null) {
-      nameController.text = item.name;
-      priceController.text = item.price.toString();
-      stokController.text = item.stok.toString();
-      kodeBarangController.text = item.kode.toString();
+      nameController.text = item!.name;
+      priceController.text = item!.price.toString();
+      stokController.text = item!.stok.toString();
+      kodeBarangController.text = item!.kode;
     }
     return Scaffold(
       appBar: AppBar(
@@ -113,12 +113,18 @@ class _EntryFormState extends State<EntryForm> {
                       onPressed: () {
                         if (item == null) {
                           // tambah data
-                          item = Item(nameController.text,
-                              int.parse(priceController.text));
+                          item = Item(
+                            nameController.text,
+                            int.parse(priceController.text),
+                            int.parse(stokController.text),
+                            kodeBarangController.text,
+                          );
                         } else {
                           // ubah data
-                          item.name = nameController.text;
-                          item.price = int.parse(priceController.text);
+                          item?.name = nameController.text;
+                          item?.price = int.parse(priceController.text);
+                          item?.stok = int.parse(stokController.text);
+                          item?.kode = kodeBarangController.text;
                         }
                         // kembali ke layar sebelumnya dengan membawa objek item
                         Navigator.pop(context, item);
