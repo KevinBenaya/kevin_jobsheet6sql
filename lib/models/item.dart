@@ -20,13 +20,15 @@ class Item {
   set price(value) => _price = value;
 
   // konstruktor versi 1
-  Item(this._name, this._price);
+  Item(this._name, this._price, this._stok, this._kode);
 
   // konstruktor versi 2: konversi dari Map ke Item
   Item.fromMap(Map<String, dynamic> map) {
     this._id = map['id'];
     this._name = map['name'];
     this._price = map['price'];
+    this._stok = map['stok'];
+    this._kode = map['kode'];
   }
 
   // konversi dari Item ke Map
@@ -35,6 +37,8 @@ class Item {
     map['id'] = this._id;
     map['name'] = name;
     map['price'] = price;
+    map['stok'] = stok;
+    map['kode'] = kode;
     return map;
   }
 }
