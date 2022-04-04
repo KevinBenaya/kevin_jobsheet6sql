@@ -21,11 +21,11 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     if (itemList == null) {
-      itemList = List<Item>();
+      itemList = [];
     }
     return Scaffold(
       appBar: AppBar(
-        title: Text('Daftar Item'),
+        title: const Text('Daftar Item'),
       ),
       body: Column(
         children: [
@@ -37,7 +37,7 @@ class _HomeState extends State<Home> {
             child: SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                child: Text('Tambah Item'),
+                child: const Text('Tambah Item'),
                 onPressed: () async {
                   var item = await navigateToEntryForm(context, null);
                   if (item != null) {
@@ -73,7 +73,7 @@ class _HomeState extends State<Home> {
           color: Colors.white,
           elevation: 2.0,
           child: ListTile(
-            leading: CircleAvatar(
+            leading: const CircleAvatar(
               backgroundColor: Colors.red,
               child: Icon(Icons.ad_units),
             ),
@@ -83,7 +83,7 @@ class _HomeState extends State<Home> {
             ),
             subtitle: Text(this.itemList[index].price.toString()),
             trailing: GestureDetector(
-              child: Icon(Icons.delete),
+              child: const Icon(Icons.delete),
               onTap: () async {
                 //TODO 3 Panggil Fungsi untuk Delete dari DB berdasarkan Item
               },

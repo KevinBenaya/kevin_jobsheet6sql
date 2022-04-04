@@ -2,11 +2,19 @@ class Item {
   int _id;
   String _name;
   int _price;
+  int _stok;
+  int _kode;
 
   int get id => _id;
 
   String get name => this._name;
   set name(String value) => this._name = value;
+
+  get stok => this._stok;
+  set stok(value) => this._stok = value;
+
+  get kode => this._kode;
+  set kode(value) => this._kode = value;
 
   get price => this._price;
   set price(value) => this._price = value;
